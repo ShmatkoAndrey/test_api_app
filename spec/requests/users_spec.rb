@@ -24,7 +24,6 @@ describe 'Users', :type => :request do
       expect(page).to have_content('1')
     end
 
-
   end
 
 end

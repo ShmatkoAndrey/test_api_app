@@ -29,7 +29,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rails-controller-testing' #??
   gem 'faker'
-
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -44,7 +44,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'active_model_serializers'
 gem 'selenium-webdriver'
-
 gem 'rack-cors'
 
 

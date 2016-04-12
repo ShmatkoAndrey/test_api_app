@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'database_cleaner'
 # require 'rspec/autorun'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -44,6 +45,23 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
+end
+
+RSpec.configure do |config|
+  config.use_transactional_fixtures = false
+
+  config.before :each do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end
 
 
